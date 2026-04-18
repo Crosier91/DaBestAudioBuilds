@@ -1,0 +1,104 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectItem } from "@/components/ui/select";
+
+export default function AudioBuilder() {
+  const [result, setResult] = useState(false);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white p-6">
+      
+      {/* HEADER */}
+      <div className="max-w-5xl mx-auto text-center mb-10">
+        <h1 className="text-4xl md:text-5xl font-bold">
+          AI Car Audio Builder 🔊
+        </h1>
+        <p className="text-gray-400 mt-3">
+          Build a custom sound system for any car in seconds
+        </p>
+      </div>
+
+      {/* MAIN */}
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
+
+        {/* INPUT */}
+        <Card className="bg-gray-900 border-gray-800">
+          <CardContent className="p-6 space-y-4">
+
+            <h2 className="text-xl font-semibold">Your Vehicle</h2>
+
+            <Input placeholder="Year / Make / Model" />
+
+            <Select>
+              <SelectItem value="bass">Bass Heavy 🔊</SelectItem>
+              <SelectItem value="balanced">Balanced 🎵</SelectItem>
+              <SelectItem value="premium">Premium 🎧</SelectItem>
+              <SelectItem value="budget">Budget 💰</SelectItem>
+            </Select>
+
+            <Input placeholder="Budget (e.g. 500 - 2000)" />
+
+            <Button
+              className="w-full bg-blue-600 hover:bg-blue-700"
+              onClick={() => setResult(true)}
+            >
+              Generate Setup
+            </Button>
+
+          </CardContent>
+        </Card>
+
+        {/* RESULTS */}
+        <div className="space-y-4">
+
+          {!result && (
+            <Card className="bg-gray-900 border-gray-800">
+              <CardContent className="p-6 text-gray-500 text-center">
+                Your build will show here
+              </CardContent>
+            </Card>
+          )}
+
+          {result && (
+            <>
+              <Card className="bg-gray-900 border-gray-800">
+                <CardContent className="p-4">
+                  <h3>🔊 Speakers</h3>
+                  <p className="text-gray-400 text-sm">Front component speakers</p>
+                  <Button className="mt-3 w-full">Buy</Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-900 border-gray-800">
+                <CardContent className="p-4">
+                  <h3>🔉 Subwoofer</h3>
+                  <p className="text-gray-400 text-sm">Deep bass setup</p>
+                  <Button className="mt-3 w-full">Buy</Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-900 border-gray-800">
+                <CardContent className="p-4">
+                  <h3>⚡ Amplifier</h3>
+                  <p className="text-gray-400 text-sm">Clean power delivery</p>
+                  <Button className="mt-3 w-full">Buy</Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-green-900 border-green-700">
+                <CardContent className="p-4">
+                  <h3>💰 Estimated Total</h3>
+                  <p className="text-xl mt-2">$750 - $1200</p>
+                </CardContent>
+              </Card>
+
+            </>
+          )}
+
+        </div>
+      </div>
+    </div>
+  );
+}
